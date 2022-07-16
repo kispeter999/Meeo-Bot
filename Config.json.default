@@ -1,0 +1,5 @@
+{
+  "token": "DISCORD TOKEN HERE",
+  "prefix": ">",
+  "riotdevtoken": "RIOT API TOKEN HERE"
+}

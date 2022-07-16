@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp3.1\Config.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Camille.Core" Version="3.0.0-nightly-2020-10-08-de5463a2d9" />
+    <PackageReference Include="Camille.Enums" Version="3.0.0-nightly-2020-10-08-de5463a2d9" />
+    <PackageReference Include="Camille.Lcu" Version="3.0.0-nightly-2020-10-08-de5463a2d9" />
+    <PackageReference Include="Camille.LolGame" Version="3.0.0-nightly-2020-10-08-de5463a2d9" />
+    <PackageReference Include="Camille.RiotApi" Version="3.0.0-nightly-2020-08-25-66352f1423" />
+    <PackageReference Include="Camille.RiotGames" Version="3.0.0-nightly-2020-10-08-de5463a2d9" />
+    <PackageReference Include="DSharpPlus" Version="4.0.1" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.0.1" />
+    <PackageReference Include="DSharpPlus.Interactivity" Version="4.0.1" />
+    <PackageReference Include="MingweiSamuel.Camille" Version="2.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Utils\Links.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
+</Project>
