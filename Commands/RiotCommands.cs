@@ -1,26 +1,14 @@
 ﻿using Camille.Enums;
-using Camille.Lcu.LolSummoner;
-using Camille.RiotApi;
-using Camille.RiotApi.ChampionMasteryV4;
-using Camille.RiotApi.MatchV4;
-using Camille.RiotApi.SummonerV4;
-using Camille.RiotGames.SummonerV4;
-using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
-using DSharpPlus.Entities;
-using DSharpPlus.Interactivity;
 using MingweiSamuel.Camille.Enums;
-using MingweiSamuel.Camille.SummonerV4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Camille.RiotGames;
-using Camille.RiotApi.ClashV1;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.IO;
 using Newtonsoft.Json;
 

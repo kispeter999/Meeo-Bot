@@ -1,14 +1,18 @@
-﻿using DSharpPlus;
+﻿using Camille.Enums;
+using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
+using MingweiSamuel.Camille.Enums;
+using MingweiSamuel.Camille;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MeeoBotDSharpPlus.Commands
 {
@@ -18,7 +22,8 @@ namespace MeeoBotDSharpPlus.Commands
         [Description("returns pong!")]
         public async Task Ping(CommandContext ctx)
         {
-            await ctx.Channel.SendMessageAsync("Pong! (" + ctx.Client.Ping + " ms)").ConfigureAwait(false);
+            //await ctx.Channel.SendMessageAsync("Pong! (" + ctx.Client.Ping + " ms)").ConfigureAwait(false);
+            await ctx.RespondAsync("Pong! (" + ctx.Client.Ping + " ms)");
         }
 
 
@@ -75,6 +80,50 @@ namespace MeeoBotDSharpPlus.Commands
             {
                 await ctx.Channel.SendMessageAsync("You don't have any true reacts :(");
             }
+        }
+
+        [Command("calculatetrues")]
+        [Description("recalculates truecounts")]
+        [RequireOwner]
+        public async Task CalculateTrues(CommandContext ctx)
+        {
+            ReactionCounter.CalculateTrueReactions();
+            await ctx.Channel.SendMessageAsync("Calculating true reactions");
+        }
+
+        [Command("basedlist")]
+        [Description("Displays the list of the most based people on the server")]
+        [RequireOwner]
+        public async Task BasedList(CommandContext ctx)
+        {
+            try
+            {
+                List<ReactObject> reactlist = ReactionCounter.GetReactList();
+
+                StringBuilder sb = new StringBuilder("");
+                sb.Append("Based people:\n");
+
+                reactlist = reactlist.OrderByDescending(reac => reac.TrueCounter).ToList();
+                for (var i = 0; i < 10; i++)
+                {
+                    var reaction = reactlist[i];
+                    sb.AppendFormat("{0}: {1}\n", ctx.Client.GetUserAsync(reaction.DiscordId).Result.Username, reaction.TrueCounter);
+                }
+                await ctx.Channel.SendMessageAsync(sb.ToString());
+            }
+            catch (NullReferenceException)
+            {
+                await ctx.Channel.SendMessageAsync("Summoner not found");
+            }
+            catch (InvalidOperationException)
+            {
+                await ctx.Channel.SendMessageAsync("You have not linked a SummonerName to your discord account yet. Use the '>link' command!");
+            }
+            catch (Exception e)
+            {
+                await ctx.Channel.SendMessageAsync("Error: \n" + e);
+            }
+
         }
     }
 
